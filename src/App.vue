@@ -5,7 +5,7 @@
       <div class="row">
         <div class="card">
           <h2>Актуальные новости {{now}}</h2>
-          <span>Открыто:</span>
+          <span>Открыто: {{openRate}}</span>
         </div>
       </div>
       <div class="row">
@@ -17,6 +17,7 @@
             :id="item.id"
             :title="item.title"
             :is-open="item.isOpen"
+            @opened-news="rateHandler"
           />
         </div>
       </div>
@@ -51,6 +52,11 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    rateHandler() {
+      this.openRate += 1;
+    },
   },
 };
 </script>

@@ -1,8 +1,10 @@
 <template>
   <div class="card">
     <h3>{{title}}</h3>
-    <button class="btn" @click="openandler">Open</button>
-    <p v-if="thisIsOpen">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    <button class="btn" @click="openHandler">
+      {{this.isNewsOpen ? 'Закрыть' : 'Открыть'}}
+    </button>
+    <p v-if="isNewsOpen">Lorem ipsum dolor sit amet consectetur adipisicing elit.
       Reprehenderit aspernatur at voluptatum?</p>
   </div>
 </template>
@@ -26,12 +28,14 @@ export default {
   },
   data() {
     return {
-      thisIsOpen: false,
+      isNewsOpen: false,
     };
   },
   methods: {
-    openandler() {
-      this.thisIsOpen = !this.thisIsOpen;
+    openHandler() {
+      this.isNewsOpen = !this.isNewsOpen;
+
+      if (this.isNewsOpen) this.$emit('opened-news');
     },
   },
 };
