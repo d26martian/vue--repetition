@@ -1,17 +1,42 @@
 <template>
   <div class="card">
     <h3>{{title}}</h3>
-    <button class="btn" @click="openHandler">
+    <AppButton
+      :color="this.isNewsOpen ? 'btn-danger' : 'btn-success'"
+      @action="openHandler"
+    >
       {{this.isNewsOpen ? 'Закрыть' : 'Открыть'}}
-    </button>
-    <p v-if="isNewsOpen">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    </AppButton>
+    <AppButton
+      :color="'btn-danger'"
+      v-if="wasRead"
+      @action="$emit('unmark', id)"
+    >
+      Отменить прочитано
+    </AppButton>
+    <div v-if="isNewsOpen">
+      <hr/>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
       Reprehenderit aspernatur at voluptatum?</p>
+      <AppButton
+        :color="'btn-primary'"
+        v-if="!wasRead"
+        @action="markHandler"
+      >
+        Прочесть новость
+      </AppButton>
+    </div>
   </div>
 </template>
 <script>
+import AppButton from './ui/AppButton.vue';
+
 export default {
   name: 'AppNews',
   // props: ['item'],
+  components: {
+    AppButton,
+  },
   props: {
     id: {
       type: Number,
@@ -19,6 +44,10 @@ export default {
     },
     title: {
       type: String,
+      required: true,
+    },
+    wasRead: {
+      type: Boolean,
       required: true,
     },
     isOpen: {
@@ -36,6 +65,10 @@ export default {
       this.isNewsOpen = !this.isNewsOpen;
 
       if (this.isNewsOpen) this.$emit('opened-news');
+    },
+    markHandler() {
+      this.isNewsOpen = false;
+      this.$emit('read-news', this.id);
     },
   },
 };
