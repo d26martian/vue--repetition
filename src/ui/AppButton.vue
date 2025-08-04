@@ -1,4 +1,4 @@
-<template lang="">
+<template>
   <button class="btn" :class="color" @click="$emit('action')">
     <slot/>
   </button>

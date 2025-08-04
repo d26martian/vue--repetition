@@ -25,17 +25,21 @@
       >
         Прочесть новость
       </AppButton>
+      <AppNewsList />
     </div>
   </div>
 </template>
 <script>
+
 import AppButton from './ui/AppButton.vue';
+import AppNewsList from './components/AppNewsList.vue';
 
 export default {
   name: 'AppNews',
   // props: ['item'],
   components: {
     AppButton,
+    AppNewsList,
   },
   props: {
     id: {

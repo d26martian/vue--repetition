@@ -59,6 +59,11 @@ export default {
       ],
     };
   },
+  provide() {
+    return {
+      news: this.news,
+    };
+  },
   methods: {
     rateHandler() {
       this.openRate += 1;
