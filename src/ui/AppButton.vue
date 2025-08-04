@@ -12,7 +12,7 @@ export default {
       type: String,
       default: '',
       validator(value) {
-        return ['', 'primary', 'danger'].includes(value);
+        return ['', 'btn-primary', 'btn-danger'].includes(value);
       },
     },
   },
